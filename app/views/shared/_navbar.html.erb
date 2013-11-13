@@ -6,7 +6,9 @@
 
         <% if user_signed_in? %>
           <li><a href="#">Dashboard</a></li>
-          <li><a href="#">Forum</a></li>
+          <li>
+            <%= link_to 'Forum', forums_root_path %>
+          </li>
           <li><a href="#">News</a></li>
           <li><a href="#">Calendar</a></li>
         </ul>

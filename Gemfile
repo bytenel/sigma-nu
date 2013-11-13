@@ -12,6 +12,14 @@ gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) support
 gem "twitter-bootstrap-rails"
 
 gem "devise"
+gem "forum_monster"
+gem 'rails_autolink'
+
+group :development do
+	gem 'better_errors'
+	gem 'binding_of_caller'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

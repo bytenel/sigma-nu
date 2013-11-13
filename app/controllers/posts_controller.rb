@@ -1,83 +1,56 @@
-class PostsController < ApplicationController
-  # GET /posts
-  # GET /posts.json
-  def index
-    @posts = Post.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @posts }
-    end
-  end
-
-  # GET /posts/1
-  # GET /posts/1.json
-  def show
-    @post = Post.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @post }
-    end
-  end
-
-  # GET /posts/new
-  # GET /posts/new.json
+class PostsController < ApplicationController    
   def new
+    @topic = Topic.find(params[:topic_id])
     @post = Post.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @post }
+    
+    if params[:quote]
+      quote_post = Post.find(params[:quote])
+      if quote_post
+        @post.body = quote_post.body
+      end
     end
   end
-
-  # GET /posts/1/edit
+  
+  def create
+    @topic = Topic.find(params[:topic_id])
+    @post = @topic.posts.build(params[:post])
+    @post.forum = @topic.forum
+    @post.user = current_user
+    
+    if @post.save
+      flash[:notice] = "Post was successfully created."
+      redirect_to topic_path(@post.topic)
+    else
+      render :action => 'new'
+    end
+  end
+  
   def edit
     @post = Post.find(params[:id])
   end
-
-  # POST /posts
-  # POST /posts.json
-  def create
-    @post = Post.new(params[:post])
-
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render json: @post, status: :created, location: @post }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /posts/1
-  # PUT /posts/1.json
+  
   def update
     @post = Post.find(params[:id])
 
-    respond_to do |format|
-      if @post.update_attributes(params[:post])
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.update_attributes(params[:post])
+      flash[:notice] = "Post was successfully updated."
+      redirect_to topic_path(@post.topic)
     end
   end
-
-  # DELETE /posts/1
-  # DELETE /posts/1.json
+  
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
-
-    respond_to do |format|
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
+    
+    if @post.topic.posts_count > 1
+      if @post.destroy
+        flash[:notice] = "Post was successfully destroyed."
+        redirect_to topic_path(@post.topic)
+      end
+    else
+      if @post.topic.destroy
+        flash[:notice] = "Topic was successfully deleted."
+        redirect_to forum_path(@post.forum)
+      end
     end
   end
 end

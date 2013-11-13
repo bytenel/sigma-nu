@@ -11,13 +11,47 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131104042635) do
+ActiveRecord::Schema.define(:version => 20131113032727) do
 
-  create_table "posts", :force => true do |t|
+  create_table "categories", :force => true do |t|
+    t.string   "title"
+    t.boolean  "state",      :default => true
+    t.integer  "position",   :default => 0
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
+  create_table "forums", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.boolean  "state",        :default => true
+    t.integer  "topics_count", :default => 0
+    t.integer  "posts_count",  :default => 0
+    t.integer  "position",     :default => 0
+    t.integer  "category_id"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
+  create_table "posts", :force => true do |t|
+    t.text     "body"
+    t.integer  "forum_id"
+    t.integer  "topic_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "topics", :force => true do |t|
+    t.string   "title"
+    t.integer  "hits",        :default => 0
+    t.boolean  "sticky",      :default => false
+    t.boolean  "locked",      :default => false
+    t.integer  "posts_count"
+    t.integer  "forum_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -34,6 +68,8 @@ ActiveRecord::Schema.define(:version => 20131104042635) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "username"
+    t.integer  "topics_count",           :default => 0
+    t.integer  "posts_count",            :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
