@@ -1,17 +1,7 @@
+<% content_for :side_content do %>
+   <%= render :partial => "sidebar_links" %>
+<% end %>
 
-
-    <div class="container">
-        <div class="row">
-          <div class="span9">
-            <%= bootstrap_flash %>
-            <%= yield %>
-          </div>
-          
-            <%= render :partial => "sidebar_links" %>
-        </div><!--/row-->
-
-      <footer>
-        <p>&copy; Sigma Nu Epsilon Lambda 2013</p>
-      </footer>
-    </div> <!-- /container -->
-
+<% content_for :main_content do %>
+  huh?
+<% end %>
