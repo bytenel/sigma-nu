@@ -1,45 +1,31 @@
 <% content_for :main_content do %>
 <div class="row">
   <div class="module">
-    <div class="module_header"><%= action_name.humanize %> Category</div>
-      <div class="module_subheader smaller"></div>
+    <h3><%= action_name.humanize %> Category</h3>
       <div class="module_body">
         <%= form_for @category do |f| %>
-        <% if @category.errors.any? %>
-          <% flash.now[:error] = @category.errors.full_messages.join(', and ') %>
-        <% end %>
-        <div class="fieldset">
-          <span class="label indent smaller">
-            <%= f.label :title %><br />
-            <small>(Required)</small>
-          </span>
-          <span class="input indent smaller"><%= f.text_field :title, :size => 75 %></span>
-          <div class="clear"></div>
-        </div>
-        <div class="fieldset">
-          <span class="label indent smaller">
-            <%= f.label :position %>
-          </span>
-          <span class="input indent smaller"><%= f.text_field :position %></span>
-          <div class="clear"></div>
-        </div>
-        <div class="fieldset">
-          <span class="label indent smaller"></span>
-          <span class="input indent smaller">
-            <%= f.check_box :state %>
-            <%= f.label :state %>
-          </span>
-          <div class="clear"></div>
-        </div>
-      </div>
-      <div class="module_footer">
-        <div class="fieldset">
-          <span class="input"><%= f.submit "submit" %> or <%= link_to "cancel", forums_path %></span>
-          <div class="clear"></div>
-        </div>
-      </div>
+          <fieldset>
+            <% if @category.errors.any? %>
+              <% flash.now[:error] = @category.errors.full_messages.join(', and ') %>
+            <% end %>
+              <%= f.label :title %>
+              <small style="display:block;">(Required)</small>
+              <%= f.text_field :title, :size => 75 %>
+                <%= f.label :position %>
+                <%= f.text_field :position %>
+          </fieldset>
+          
+          <fieldset>
+              <%= f.check_box :state %>
+              <%= f.label :state %>
+          </fieldset>
+       </div>
+
+        <footer>
+            <%= f.submit "submit", :class => "btn" %>
+            <%= link_to "cancel", forums_path, html_options = {:class => "btn"} %>
+        </footer>
       <% end %>
     </div>
   </div>
-</div>
 <% end %>

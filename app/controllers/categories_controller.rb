@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
   
   def new
     @category = Category.new
+    render :layout => 'no_right_side'
   end
   
   def create

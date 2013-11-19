@@ -1,4 +1,6 @@
 <% content_for :main_content do %>
+<div class="row forum">
+
 <div class="right controls"><%= link_to "New Forum/Category", new_forum_path %></div>
 <% @categories.each do |category| %>
   <div class="module">
@@ -12,22 +14,24 @@
     </div>
     <% if category.forums.size > 0 %>
     <div>
-      <table>
-        <tr class="smaller">
+      <table class="table table-bordered table-condensed">
+        <thead class="smaller">
           <th colspan="2" align="left">Forum</th>
           <th>Topics</th>
           <th>Posts</th>
           <th class="last_post" align="left">Last Post</th>
-        </tr>
-        <% category.forums.each do |forum| %>
+        </thead>
+        <tbody>
+          <% category.forums.each do |forum| %>
+        </tbody>
         <tr>
-          <td class="icon"><%= image_tag 'ruby.png' %></td>
+          <td class="center-padded-table"><i class="img-circle icon-th-list"></i></td>
           <td class="description">
             <%= link_to forum.title, forum_path(forum) %><br />
             <span class="smaller"><%= forum.description %></span><br />
           </td>
-          <td class="counts smaller"><%= forum.topics.size %></td>
-          <td class="counts smaller"><%= forum.posts.size - forum.topics.size %></td>
+          <td class="center-padded-table"><%= forum.topics.size %></td>
+          <td class="center-padded-table"><%= forum.posts.size - forum.topics.size %></td>
           <td class="last_post smaller">
             <% if forum.posts.size > 0 %>
               <%= forum.posts.last.created_at %><br />
@@ -44,6 +48,8 @@
       <div class="module_body">There are currently no forums.</div>
     <% end %>
   </div>
+</div>
+
 <% end %>
 
 <% end %>
