@@ -1,4 +1,10 @@
-class ForumsController < ApplicationController    
+class ForumsController < ApplicationController 
+  load_and_authorize_resource
+ 
+  def index
+    @forums = Forum.all
+  end
+
   def show
     @forum = Forum.find(params[:id])
   end

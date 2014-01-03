@@ -4,8 +4,6 @@ class Forum < ActiveRecord::Base
   has_many :topics, :dependent => :destroy
   has_many :posts, :through => :topics
   
-  belongs_to :category
-  
   # Accessors
   attr_accessible :title, :description, :state, :position, :category_id
   

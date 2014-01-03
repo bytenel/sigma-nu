@@ -1,18 +1,13 @@
 <% content_for :main_content do %>
 <div class="row forum">
-
-<div class="right controls"><%= link_to "New Forum/Category", new_forum_path %></div>
-<% @categories.each do |category| %>
-  <div class="module">
+<h2> Forums </h2>
+ <div class="module">
     <div class="module_header">
-      <%= category.title %>
       <span class="controls right smaller">
-        <%= link_to "New Forum", new_forum_path %>
-        <%= link_to "Edit Category", edit_forum_path(category) %>
-        <%= link_to "Delete Category", forum_path(category), :confirm => "Are you sure you want to delete this category?", :method => :delete %>
+        <%= link_to "New Forum", new_forum_path, :class => 'btn btn-primary' %>
       </span>
     </div>
-    <% if category.forums.size > 0 %>
+    <% if @forums.size > 0 %>
     <div>
       <table class="table table-bordered table-condensed">
         <thead class="smaller">
@@ -22,7 +17,7 @@
           <th class="last_post" align="left">Last Post</th>
         </thead>
         <tbody>
-          <% category.forums.each do |forum| %>
+          <% @forums.each do |forum| %>
         </tbody>
         <tr>
           <td class="center-padded-table"><i class="img-circle icon-th-list"></i></td>
@@ -40,6 +35,14 @@
               No Topics / Posts
             <% end %>
           </td>
+          <td>
+           <%= link_to "Edit Forum", edit_forum_path(forum), :class => 'btn btn-primary' %>
+           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              forum_path(forum),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+          </td>
         </tr>
         <% end %>
       </table>
@@ -49,7 +52,5 @@
     <% end %>
   </div>
 </div>
-
-<% end %>
 
 <% end %>

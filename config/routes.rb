@@ -1,10 +1,9 @@
 SigmaNew::Application.routes.draw do
-  resources :categories, :except => [:index, :show]
-  resources :forums, :except => :index do
+  resources :forums do
     resources :topics, :shallow => true, :except => :index do
       resources :posts, :shallow => true, :except => [:index, :show]
     end
-    root :to => 'categories#index', :via => :get
+    root :to => 'forums#index', :via => :get
   end
 
   devise_for :users

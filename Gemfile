@@ -13,6 +13,7 @@ gem "twitter-bootstrap-rails"
 gem "devise"
 gem "forum_monster"
 gem 'rails_autolink'
+gem 'cancan'
 
 group :development do
 	gem 'better_errors'

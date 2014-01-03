@@ -1,7 +1,15 @@
 <% content_for :side_content do %>
-   <%= render :partial => "sidebar_links" %>
+  <%= render :partial => "sidebar_links" %>
 <% end %>
 
 <% content_for :main_content do %>
-  huh?
+    <!-- carousel -->
+    <div id="myCarousel" class="carousel slide">
+      <div class="carousel-inner">
+        <%= render :partial => "carousel_item" %>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+    </div>
+    <!-- /carousel -->
 <% end %>
