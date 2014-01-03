@@ -1,5 +1,5 @@
 class Topic < ActiveRecord::Base
-  
+ resourcify 
   # Associations
   has_many :posts, :dependent => :destroy
   belongs_to :forum, :counter_cache => true

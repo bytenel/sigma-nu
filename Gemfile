@@ -14,6 +14,7 @@ gem "devise"
 gem "forum_monster"
 gem 'rails_autolink'
 gem 'cancan'
+gem 'rolify'
 
 group :development do
 	gem 'better_errors'

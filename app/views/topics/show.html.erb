@@ -9,9 +9,11 @@
         <%= link_to "Delete", @topic, html_options = {:class => "btn btn-mini btn-danger"}, :confirm => "Are you sure?", :method => :delete %>
         <%= link_to @topic.sticky ? "Unstick" : "Sticky", {:controller => 'topics', :action => 'update', :topic => {:sticky => @topic.sticky ? "false" : "true" }}, html_options = {:class => 'btn btn-mini', :method => :put }
             %>
+        <% if current_user.has_role? :moderator %>
         <%= link_to @topic.locked ? "Unlock" : "Lock", {:controller => 'topics', :action => 'update', :topic => {:locked => @topic.locked ? "false" : "true" } },
             html_options = {:class => 'btn btn-mini', :method => :put}
             %>
+        <% end %>
       </span>
     </div>
     <div>
@@ -25,8 +27,10 @@
               <span class="right controls">
                 <%= link_to "Reply", new_topic_post_path(@topic), html_options = {:class => "btn btn-mini"}  %>
                 <%= link_to "Quote", new_topic_post_path(@topic, :quote => post), html_options = {:class => "btn btn-mini"} %>
+                <% if current_user.posts.includes(post) %>
                 <%= link_to "Edit", edit_post_path(post), html_options = {:class => "btn btn-mini"} %>
                 <%= link_to "Delete", post,  html_options = {:class => "btn btn-mini btn-danger"}, :confirm => "Are you sure?", :method => :delete %>
+                <% end %>
               </span>
             </th>
         </thead>
