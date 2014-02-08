@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username
+  validates :email, :presence => true
+  validates :password, :presence => true
+  validates :password_confirmation, :presence => true
+  validates :username, :presence => true
 
 private
   def assign_reader_role
