@@ -1,4 +1,7 @@
 SigmaNew::Application.routes.draw do
+  resources :articles
+
+
   resources :forums do
     resources :topics, :shallow => true, :except => :index do
       resources :posts, :shallow => true, :except => [:index, :show]

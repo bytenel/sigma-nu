@@ -57,6 +57,9 @@ GEM
     erubis (2.7.0)
     execjs (2.0.2)
     forum_monster (1.0.4)
+    gravatar-ultimate (2.0.0)
+      activesupport (>= 2.3.14)
+      rack
     hike (1.2.3)
     i18n (0.6.1)
     journey (1.0.4)
@@ -144,6 +147,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   forum_monster
+  gravatar-ultimate
   jquery-rails
   less-rails
   rails (= 3.2.13)
