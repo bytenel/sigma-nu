@@ -13,6 +13,8 @@ gem 'rails_autolink'
 gem 'cancan'
 gem 'rolify'
 
+gem 'gravatar-ultimate'
+
 group :development do
 	gem 'better_errors'
 	gem 'binding_of_caller'

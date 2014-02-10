@@ -18,6 +18,6 @@ class User < ActiveRecord::Base
 
 private
   def assign_reader_role
-    self.add_role "reader"
+    self.add_role 'reader'
   end
 end
