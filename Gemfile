@@ -4,8 +4,11 @@ gem 'rails', '3.2.13'
 
 gem 'sqlite3'
 
-gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
+
+group :production do
+	gem 'therubyracer', :platform => :ruby
+end
 
 gem 'devise'
 gem 'forum_monster'
