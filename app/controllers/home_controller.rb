@@ -13,5 +13,7 @@ class HomeController < ApplicationController
 
   def alumni
   end
-  
+
+  def about
+  end 
 end

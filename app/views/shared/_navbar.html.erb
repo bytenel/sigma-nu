@@ -2,6 +2,10 @@
       <div class="nav_container">
          <ul class="nav navbar-nav clearfix">
           <li class="active margin-left-20"><%= link_to 'Home', root_path %></li>
+          <li><%= link_to 'About', about_path %></li>
+          <li><%= link_to 'Recruitment', recruitment_path %></li>
+          <li><%= link_to 'Members', bios_path %></li>
+          <li><%= link_to 'Alumni', alumni_path %></li>
 
         <% if user_signed_in? %>
             <li><a href="#">Dashboard</a></li>
