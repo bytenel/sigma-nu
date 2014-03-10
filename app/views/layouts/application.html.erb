@@ -11,7 +11,9 @@
  <div class="container">
     <div class="row">
        <div class="span9">
-         <%= bootstrap_flash %>
+         <% flash.each do |key, value| %>
+            <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+         <% end %>
      		 <%= yield :main_content %>
        </div>
        <div class="span3">
