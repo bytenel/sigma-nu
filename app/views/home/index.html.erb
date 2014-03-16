@@ -1,19 +1,20 @@
 <% content_for :side_content do %>
-  <%= render :partial => "sidebar_links" %>
-<% end %>
+    <%= render :partial => "sidebar_links" %>
+ <% end %>
+
+<div id="fb-root"></div>
+<div class="fb-activity" data-site="developers.facebook.com" data-action="likes, recommends" data-colorscheme="light" data-header="true"></div> 
 
 <% content_for :main_content do %>
-    <!-- carousel -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div id="news" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
-        <%= render :partial => "carousel_item" %>
+        <%= render :partial => "carousel_item", collection: @news_items, as: :item %>
       </div>
-       <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+       <a class="left carousel-control" href="#news" data-slide="prev">
          <span class="glyphicon glyphicon-chevron-left"></span>
        </a>
-       <a class="right carousel-control" href="#myCarousel" data-slide="next">
+       <a class="right carousel-control" href="#news" data-slide="next">
          <span class="glyphicon glyphicon-chevron-right"></span>
        </a>
     </div>
-    <!-- /carousel -->
 <% end %>

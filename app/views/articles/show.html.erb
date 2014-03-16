@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<%= content_for :main_content do %>
 
 <p>
   <b>Title:</b>
@@ -17,7 +17,7 @@
 
 <p>
   <b>Img-url:</b>
-  <%= @article.img-url %>
+  <%= @article.img_url %>
 </p>
 
 <p>
@@ -25,6 +25,36 @@
   <%= @article.description %>
 </p>
 
+<% @article.posts.each do |post| %>
+ <% if post.body.nil?
+      next 
+    end %>
+
+  <br />
+  <%= post.user.username %> : <%= post.created_at %> 
+  <br/>
+  <%= post.body %>
+<% end %>
+
+<div class="module">
+  <h3><%= action_name.humanize %> Post</h3>
+    <div class="module_body">
+      <%= form_for [@article, @post] do |f| %>
+      <% if @post.errors.any? %>
+        <% flash.now[:error] = @post.errors.full_messages.join(', and ') %>
+      <% end %>
+        <%= f.label :body %><br />
+        <%= f.text_area :body, :cols => 60, :rows => 15 %>
+    </div>
+    <div class="module_footer">
+     <%= f.submit "submit", :class => "btn" %>
+    </div>
+    <% end %>
+  </div>
+
+
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>
+
+<% end %>

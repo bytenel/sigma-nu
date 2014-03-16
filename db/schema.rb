@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140210053736) do
+ActiveRecord::Schema.define(:version => 20140316011134) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -29,6 +29,17 @@ ActiveRecord::Schema.define(:version => 20140210053736) do
     t.integer  "position",   :default => 0
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+  end
+
+  create_table "events", :force => true do |t|
+    t.datetime "date"
+    t.integer  "user_id"
+    t.string   "description"
+    t.string   "recurrence"
+    t.integer  "priority"
+    t.string   "title"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "forums", :force => true do |t|
@@ -50,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20140210053736) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "article_id"
   end
 
   create_table "roles", :force => true do |t|

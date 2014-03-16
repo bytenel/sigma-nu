@@ -1,3 +1,5 @@
+<%= content_for :main_content do %>
+
 <%= form_for(@article) do |f| %>
   <% if @article.errors.any? %>
     <div id="error_explanation">
@@ -24,8 +26,8 @@
     <%= f.text_field :author %>
   </div>
   <div class="field">
-    <%= f.label :img-url %><br />
-    <%= f.text_field :img-url %>
+    <%= f.label :img_url %><br />
+    <%= f.text_field :img_url %>
   </div>
   <div class="field">
     <%= f.label :description %><br />
@@ -34,4 +36,6 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+<% end %>
+
 <% end %>

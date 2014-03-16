@@ -1,5 +1,7 @@
 SigmaNew::Application.routes.draw do
-  resources :articles
+  resources :articles do
+    resources :posts, :shallow => true, :except => [:index]
+  end
 
 
   resources :forums do
@@ -12,6 +14,8 @@ SigmaNew::Application.routes.draw do
   devise_for :users
 
   resources :posts
+
+  get "/calendar", to: "calendar#index"
 
   get "/recruitment", to: "home#recruitment"
   get "/bios", to: "home#bios"

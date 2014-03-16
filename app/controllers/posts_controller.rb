@@ -12,14 +12,24 @@ class PostsController < ApplicationController
   end
   
   def create
-    @topic = Topic.find(params[:topic_id])
-    @post = @topic.posts.build(params[:post])
-    @post.forum = @topic.forum
+    if(params[:topic_id].nil?)
+      article_post = true
+      @article = Article.find(params[:article_id])
+      @post = @article.posts.build(params[:post])
+     else 
+      @topic = Topic.find(params[:topic_id])
+      @post = @topic.posts.build(params[:post])
+      @post.forum = @topic.forum
+    end
+
     @post.user = current_user
-    
     if @post.save
       flash[:notice] = "Post was successfully created."
-      redirect_to topic_path(@post.topic)
+      if article_post
+        redirect_to article_path(@post.article)
+      else
+        redirect_to topic_path(@post.topic)
+      end
     else
       render :action => 'new'
     end

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date: 
+  user: 
+  description: MyString
+  recurrence: MyString
+  priority: 1
+  title: MyString
+
+two:
+  date: 
+  user: 
+  description: MyString
+  recurrence: MyString
+  priority: 1
+  title: MyString

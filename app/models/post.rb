@@ -4,7 +4,8 @@ class Post < ActiveRecord::Base
   belongs_to :forum, :counter_cache => true
   belongs_to :topic, :counter_cache => true, :touch => true 
   belongs_to :user, :class_name => "User", :counter_cache => true
-  
+  belongs_to :article
+   
   # Accessors
   attr_accessible :body
   
@@ -26,6 +27,10 @@ class Post < ActiveRecord::Base
   # Methods
   private
     def topic_locked?
+      if topic.nil?
+        return
+      end
+
       if topic.locked?
         errors.add(:base, "That topic is locked")
         false

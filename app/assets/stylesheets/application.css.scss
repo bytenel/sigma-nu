@@ -7,6 +7,7 @@
  *
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
+ *= require fullcalendar
  *= require_tree .
  *= require_self
  */
@@ -15,4 +16,14 @@
   footer{
   	margin-top: 50px;
   	text-align: center;
+  }
+
+  #news{
+  	height: 600px;
+  	width: 800px;
+  }
+
+  .carousel-image{
+  	height: 300px;
+  	width: 300px;
   }

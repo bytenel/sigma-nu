@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
+    @news_items = Article.all
   end
 
   def recruitment

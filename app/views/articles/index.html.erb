@@ -1,3 +1,4 @@
+<%= content_for :main_content do %>
 <h1>Listing articles</h1>
 
 <table>
@@ -5,7 +6,7 @@
     <th>Title</th>
     <th>Date</th>
     <th>Author</th>
-    <th>Img-url</th>
+    <th>Image Url</th>
     <th>Description</th>
     <th></th>
     <th></th>
@@ -17,7 +18,7 @@
     <td><%= article.title %></td>
     <td><%= article.date %></td>
     <td><%= article.author %></td>
-    <td><%= article.img-url %></td>
+    <td><%= article.img_url %></td>
     <td><%= article.description %></td>
     <td><%= link_to 'Show', article %></td>
     <td><%= link_to 'Edit', edit_article_path(article) %></td>
@@ -29,3 +30,5 @@
 <br />
 
 <%= link_to 'New Article', new_article_path %>
+
+<% end %>

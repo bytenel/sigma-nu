@@ -60,6 +60,7 @@ GEM
     erubis (2.7.0)
     execjs (2.0.2)
     forum_monster (1.0.4)
+    fullcalendar-rails (1.6.4.0)
     gravatar-ultimate (2.0.0)
       activesupport (>= 2.3.14)
       rack
@@ -144,6 +145,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   forum_monster
+  fullcalendar-rails
   gravatar-ultimate
   jquery-rails
   rails (= 3.2.13)

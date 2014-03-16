@@ -11,8 +11,19 @@
 // GO AFTER THE REQUIRES BELOW.
 //= require jquery
 //= require jquery_ujs
- //= require bootstrap 
- //= require angular
+//= require bootstrap 
+//= require angular
+//= require fullcalendar
+//= require gcal
 //= require_self
 //= require_tree  .
 
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+$('.carousel').carousel('pause');
