@@ -1,6 +1,6 @@
 class Article < ActiveRecord::Base
   has_many :posts, :dependent => :destroy
-  attr_accessible :author, :date, :description, :img_url, :title
+  attr_accessible :author, :date, :description, :title
 
   attr_accessible :photo
   #TODO: move YAML load statement into a helper somewhere

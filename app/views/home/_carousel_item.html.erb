@@ -3,8 +3,8 @@
 <% else %>
  <div class="item">	
 <% end %>
- <%= image_tag(item.img_url, { :class => "carousel-image"}) %>
-     <div class="carousel-caption">
+ <%= image_tag(item.photo.url, { :class => "carousel-image"}) %>
+     <div class="carousel_fix_items carousel-caption">
        <h1><%= item.title %></h1>
        <p><%= item.description %></p>
        <%= link_to "Learn more", item, { :class => "btn btn-large btn-primary" } %>

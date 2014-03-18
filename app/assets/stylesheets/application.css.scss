@@ -27,3 +27,10 @@
   	height: 300px;
   	width: 300px;
   }
+
+/* TODO: fix this hack... */
+  .carousel_fix_items{
+    position: inherit;
+    padding-top: 50px;
+    padding-right: 300px;
+  }
