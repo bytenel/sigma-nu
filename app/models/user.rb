@@ -16,6 +16,13 @@ class User < ActiveRecord::Base
   validates :password_confirmation, :presence => true
   validates :username, :presence => true
 
+  attr_accessible :avatar
+  #TODO: move YAML load statement into a helper somewhere
+  has_attached_file :avatar, :storage => :s3, :styles => { :medium => "300x300>",
+                    :thumb => "100x100>" }, :default_url => "/images/:style/missing.png",
+                    :s3_credentials => YAML.load(ERB.new(File.read("#{::Rails.root}/config/s3.yml")).result)
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
 private
   def assign_reader_role
     self.add_role 'reader'

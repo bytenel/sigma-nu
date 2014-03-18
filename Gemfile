@@ -18,7 +18,13 @@ gem 'gravatar-ultimate'
 
 gem 'angularjs-rails'
 
+#probably going to replace this with an angular module
+#and direct communication with google api and my database on second thought
 gem 'fullcalendar-rails'
+
+gem "paperclip", "~> 4.1"
+
+gem 'aws-sdk', '~> 1.5.7'
 
 group :development do
 	gem 'better_errors'
