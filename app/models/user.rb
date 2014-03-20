@@ -23,8 +23,11 @@ class User < ActiveRecord::Base
                     :s3_credentials => YAML.load(ERB.new(File.read("#{::Rails.root}/config/s3.yml")).result)
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
-private
+  def assign_moderator_role
+   self.add_role 'moderator'
+  end
+
   def assign_reader_role
-    self.add_role 'reader'
+   self.add_role 'reader'
   end
 end

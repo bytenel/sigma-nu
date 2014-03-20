@@ -6,4 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Article.create(title: "New Website", description: "Sigma Nu Epsilon Lambda got a new website!", date: Date.current, img_url: "http://upload.wikimedia.org/wikipedia/en/thumb/2/28/Sigmanucoatofarms.png/240px-Sigmanucoatofarms.png" )
+User.create(email: "admin@admin.com", password: "password", password_confirmation: "password", username: "admin").assign_moderator_role
+Article.create(title: "New Website", description: "Sigma Nu Epsilon Lambda got a new website!", date: Date.current)
+Forum.create(title: "Sigma Nu", description: "Banter about the house.", category_id: 1)
