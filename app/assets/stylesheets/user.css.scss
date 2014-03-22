@@ -1,0 +1,20 @@
+// Place all the styles related to the user controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.info_panel{
+	height: 100%;
+	border-right: solid 5px;
+}
+
+.utility_panel{
+	height: 100%;
+	border-left: solid 5px;
+}
+
+#dashboard{
+	border-style:solid;
+	border-width:5px;
+	min-height: 700px;
+	height: 700px;
+}

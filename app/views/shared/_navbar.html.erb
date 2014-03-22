@@ -8,7 +8,7 @@
           <li><%= link_to 'Alumni', alumni_path %></li>
 
         <% if user_signed_in? %>
-            <li><a href="#">Dashboard</a></li>
+            <li><%= link_to 'Dashboard', dashboard_path %></li>
             <li>
               <%= link_to 'Forum', forums_path %>
             </li>

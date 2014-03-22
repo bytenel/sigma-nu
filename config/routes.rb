@@ -15,6 +15,8 @@ SigmaNew::Application.routes.draw do
 
   resources :posts
 
+  get "/dashboard", to: "user#dashboard", as: "dashboard"
+
   get "/calendar", to: "calendar#index"
 
   get "/recruitment", to: "home#recruitment"

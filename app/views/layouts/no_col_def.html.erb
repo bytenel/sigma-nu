@@ -10,12 +10,10 @@
 <%= render :partial => "shared/navbar" %>
  <div class="container">
     <div class="row">
-       <div class="col-md-12">
         <% flash.each do |key, value| %>
            <%= content_tag(:div, value, class: "alert alert-#{key}") %>
          <% end %>
      		 <%= yield :main_content %>
-       </div>
   	</div>
   	<footer>
         <p>&copy; Sigma Nu Epsilon Lambda 2013</p>
