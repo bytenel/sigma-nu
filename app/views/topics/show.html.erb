@@ -25,6 +25,7 @@
               <span class="avatar"><!-- This space reserved for Avatar --></span>
               <span class="left post_date smaller"><%= post.created_at %></span>
               <span class="right controls">
+                <%= link_to post.flag ? "Unflag" : "Flag", {:controller => 'posts', :action => 'update', :post => {:flag => post.flag ? "false" : "true" }}, html_options = {:class => 'btn btn-mini', :method => :put } %>
                 <%= link_to "Reply", new_topic_post_path(@topic), html_options = {:class => "btn btn-mini"}  %>
                 <%= link_to "Quote", new_topic_post_path(@topic, :quote => post), html_options = {:class => "btn btn-mini"} %>
                 <% if current_user.posts.includes(post) %>

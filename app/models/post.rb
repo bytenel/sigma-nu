@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
- resourcify 
+  resourcify 
   # Associations
   belongs_to :forum, :counter_cache => true
   belongs_to :topic, :counter_cache => true, :touch => true 
@@ -8,7 +8,8 @@ class Post < ActiveRecord::Base
    
   # Accessors
   attr_accessible :body
-  
+  attr_accessible :flag
+   
   # Validations
   validates :body, :presence => true
   validates :user, :presence => true

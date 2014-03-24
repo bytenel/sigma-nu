@@ -25,6 +25,8 @@
   <%= @article.description %>
 </p>
 
+<%= link_to @article.flag ? "Unflag" : "Flag", {:controller => 'articles', :action => 'update', :article => {:flag => @article.flag ? "false" : "true" }}, html_options = {:class => 'btn btn-mini', :method => :put } %>
+
 <% @article.posts.each do |post| %>
  <% if post.body.nil?
       next 
@@ -37,7 +39,6 @@
 <% end %>
 
 <div class="module">
-  <h3><%= action_name.humanize %> Post</h3>
     <div class="module_body">
       <%= form_for [@article, @post] do |f| %>
       <% if @post.errors.any? %>

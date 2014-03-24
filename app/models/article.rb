@@ -2,7 +2,8 @@ class Article < ActiveRecord::Base
   has_many :posts, :dependent => :destroy
   attr_accessible :author, :date, :description, :title
 
-  attr_accessible :photo
+  attr_accessible :photo, :flag
+  
   #TODO: move YAML load statement into a helper somewhere
   has_attached_file :photo, :storage => :s3, :styles => { :medium => "300x300>",
                     :thumb => "100x100>" }, :default_url => "/images/:style/missing.png",
