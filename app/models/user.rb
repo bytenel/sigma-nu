@@ -1,16 +1,16 @@
 class User < ActiveRecord::Base
   rolify
-  after_create :assign_reader_role
+  after_create :assign_reader_role, :add_to_mail_chimp_members_list
   has_many :topics, :dependent => :destroy
   has_many :posts, :dependent => :destroy
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # TODO: add these
+  # :confirmable, :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username
+  
   validates :email, :presence => true
   validates :password, :presence => true
   validates :password_confirmation, :presence => true
@@ -30,4 +30,23 @@ class User < ActiveRecord::Base
   def assign_reader_role
    self.add_role 'reader'
   end
+
+  def add_to_mail_chimp_members_list
+    gb = Gibbon::API.new
+    gb.lists.subscribe(
+      { :id => 'a5eb726f54', 
+        :email => { :email => self.email }, 
+        :merge_vars => { :FNAME => self.username, :LNAME => self.username }, 
+        :double_optin => false })
+  end
+
+  def remove_from_mail_chimp_members_list
+    gb = Gibbon::API.new
+    gb.lists.unsubscribe(
+      :id => 'a5eb726f54', 
+      :email => {:email => self.email },
+      :delete_member => true, 
+      :send_notify => true)
+  end
+
 end
