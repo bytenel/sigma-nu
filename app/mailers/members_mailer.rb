@@ -12,4 +12,8 @@ class MembersMailer < ActionMailer::Base
 	   from_email: "sigmanuepl@gmail.com", from_name: "Darth Vader", generate_text: true}, 
 	   content: { html: message.render } })
   end
+
+  def cancel(user)
+
+  end
 end
