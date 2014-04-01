@@ -25,18 +25,9 @@
   <%= @article.description %>
 </p>
 
-<%= link_to @article.flag ? "Unflag" : "Flag", {:controller => 'articles', :action => 'update', :article => {:flag => @article.flag ? "false" : "true" }}, html_options = {:class => 'btn btn-mini', :method => :put } %>
+<%= link_to @article.flag_string, {:controller => 'articles', :action => 'update', :article => {:flag => @article.inverted_flag }}, html_options = {:class => 'btn btn-mini', :method => :put } %>
 
-<% @article.posts.each do |post| %>
- <% if post.body.nil?
-      next 
-    end %>
-
-  <br />
-  <%= post.user.username %> : <%= post.created_at %> 
-  <br/>
-  <%= post.body %>
-<% end %>
+<%= @article.formatted_posts %>
 
 <div class="module">
     <div class="module_body">
