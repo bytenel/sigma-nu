@@ -18,6 +18,8 @@ gem 'gravatar-ultimate'
 
 gem 'angularjs-rails'
 
+gem 'draper', '~> 1.3'
+
 #probably going to replace this with an angular module
 #and direct communication with google api and my database on second thought
 gem 'fullcalendar-rails'
