@@ -9,6 +9,20 @@ class ArticleDecorator < Draper::Decorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
+  def formatted_erros
+  	error_message = ""
+	if this.errors.any?
+     error_message += '<div id="error_explanation">
+      <h2> #{ pluralize(@article.errors.count, "error") } prohibited this article from being saved:</h2>
+      <ul>'
+       this.errors.full_messages.each do |msg| 
+       error_message += '<li> #{ msg } </li>'
+       end 
+     error_message += '</ul></div>'
+  	end
+
+  	return error_message
+  end
 
   def flag_string
     return flag ? "Unflag" : "Flag"
