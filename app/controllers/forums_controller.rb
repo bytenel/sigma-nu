@@ -6,7 +6,7 @@ class ForumsController < ApplicationController
   end
 
   def show
-    @forum = Forum.find(params[:id])
+    @forum = Forum.find(params[:id]).decorate
   end
   
   def new
@@ -25,7 +25,7 @@ class ForumsController < ApplicationController
   end
   
   def edit
-    @forum = Forum.find(params[:id])
+    @forum = Forum.find(params[:id]).decorate
   end
   
   def update

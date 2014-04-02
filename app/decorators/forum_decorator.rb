@@ -10,4 +10,10 @@ class ForumDecorator < Draper::Decorator
   #     end
   #   end
 
+  def formatted_errors
+	  if this.errors.any?
+        flash.now[:error] = this.errors.full_messages.join(', and ')
+      end 
+  end
+
 end

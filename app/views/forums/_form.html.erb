@@ -5,9 +5,7 @@
   <h3><%= action_name.humanize %> Forum</h3>
     <div class="module_body">
       <%= form_for @forum do |f| %>
-      <% if @forum.errors.any? %>
-        <% flash.now[:error] = @forum.errors.full_messages.join(', and ') %>
-      <% end %>
+        <%= @forum.formatted_errors %>
         <%= f.label :category_id %><br />
         <%= f.collection_select :category_id, Category.all, :id, :title %>
         <%= f.label :title %><br />
