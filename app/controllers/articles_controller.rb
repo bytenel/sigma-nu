@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = ArticleDecorator.decorate_collection(Article.all)
     
     respond_to do |format|
       format.html # index.html.erb

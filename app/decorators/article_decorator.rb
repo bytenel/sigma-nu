@@ -9,19 +9,19 @@ class ArticleDecorator < Draper::Decorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
-  def formatted_erros
+  def formatted_errors
   	error_message = ""
-	if this.errors.any?
+	if model.errors.any?
      error_message += '<div id="error_explanation">
       <h2> #{ pluralize(@article.errors.count, "error") } prohibited this article from being saved:</h2>
       <ul>'
-       this.errors.full_messages.each do |msg| 
+       model.errors.full_messages.each do |msg| 
        error_message += '<li> #{ msg } </li>'
        end 
      error_message += '</ul></div>'
   	end
 
-  	return error_message
+  	return error_message.html_safe
   end
 
   def flag_string
@@ -29,15 +29,15 @@ class ArticleDecorator < Draper::Decorator
   end
 
   def inverted_flag
-	return (!flag).to_s
+  	return (!flag).to_s
   end
 
   def formatted_posts
   	formatted_posts = ""
-  	posts.each do |post| 
-	    if post.body.nil?
-	      next 
-	    end 
+   	 model.posts.each do |post| 
+	     if post.body.nil?
+	       next 
+	     end 
 
 	  formatted_posts += 
 	  "<br />
@@ -45,6 +45,7 @@ class ArticleDecorator < Draper::Decorator
 	  <br/>
 	  #{ post.body }" 
 	 end 
-   return formatted_posts
+
+   return formatted_posts.html_safe
   end
 end
