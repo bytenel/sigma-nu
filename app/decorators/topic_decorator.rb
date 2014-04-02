@@ -9,5 +9,18 @@ class TopicDecorator < Draper::Decorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
+  
+  def locked_string
+	model.locked ? "Unlock" : "Lock"
+  end
 
+  def sticky_string
+	model.sticky ? "Unstick" : "Sticky"
+  end
+
+  def formatted_errors
+   if model.errors.any? 
+ 	 flash.now[:error] = model.errors.full_messages.join(', and ') 
+   end 
+  end
 end

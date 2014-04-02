@@ -7,10 +7,10 @@
       <span class="right controls">
         <%= link_to "Edit", edit_topic_path(@topic), html_options = {:class => "btn btn-mini"}  %>
         <%= link_to "Delete", @topic, html_options = {:class => "btn btn-mini btn-danger"}, :confirm => "Are you sure?", :method => :delete %>
-        <%= link_to @topic.sticky ? "Unstick" : "Sticky", {:controller => 'topics', :action => 'update', :topic => {:sticky => @topic.sticky ? "false" : "true" }}, html_options = {:class => 'btn btn-mini', :method => :put }
+        <%= link_to @topic.sticky_string, {:controller => 'topics', :action => 'update', :topic => {:sticky => @topic.sticky ? "false" : "true" }}, html_options = {:class => 'btn btn-mini', :method => :put }
             %>
         <% if current_user.has_role? :moderator %>
-        <%= link_to @topic.locked ? "Unlock" : "Lock", {:controller => 'topics', :action => 'update', :topic => {:locked => @topic.locked ? "false" : "true" } },
+        <%= link_to @topic.locked_string, {:controller => 'topics', :action => 'update', :topic => {:locked => !@topic.locked } },
             html_options = {:class => 'btn btn-mini', :method => :put}
             %>
         <% end %>
@@ -25,7 +25,7 @@
               <span class="avatar"><!-- This space reserved for Avatar --></span>
               <span class="left post_date smaller"><%= post.created_at %></span>
               <span class="right controls">
-                <%= link_to post.flag ? "Unflag" : "Flag", {:controller => 'posts', :action => 'update', :post => {:flag => post.flag ? "false" : "true" }}, html_options = {:class => 'btn btn-mini', :method => :put } %>
+                <%= link_to post.flagged_string, {:controller => 'posts', :action => 'update', :post => {:flag => !post.flag }}, html_options = {:class => 'btn btn-mini', :method => :put } %>
                 <%= link_to "Reply", new_topic_post_path(@topic), html_options = {:class => "btn btn-mini"}  %>
                 <%= link_to "Quote", new_topic_post_path(@topic, :quote => post), html_options = {:class => "btn btn-mini"} %>
                 <% if current_user.posts.includes(post) %>

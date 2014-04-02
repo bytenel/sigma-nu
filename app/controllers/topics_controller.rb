@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController  
   def show
-    @topic = Topic.find(params[:id])
+    @topic = Topic.find(params[:id]).decorate
     @topic.hit! if @topic
   end
   
@@ -23,7 +23,7 @@ class TopicsController < ApplicationController
   end
   
   def edit
-    @topic = Topic.find(params[:id])
+    @topic = Topic.find(params[:id]).decorate
   end
   
   def update

@@ -1,9 +1,7 @@
 <% content_for :main_content do %>
 
 <%= form_for [@forum, @topic] do |f| %>
-<% if @topic.errors.any? %>
-  <% flash.now[:error] = @topic.errors.full_messages.join(', and ') %>
-<% end %>
+  <%= @topic.formatted_errors %>
 <div class="module">
   <h3><%= action_name.humanize %> Topic</h3>
     <div class="module_body">
