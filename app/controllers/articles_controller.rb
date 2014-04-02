@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @articles = Article.all
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @articles }
@@ -13,8 +13,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
-    @article = Article.find(params[:id])
-    @post = @article.posts.build(params[:post])
+    @article = Article.find(params[:id]).decorate
+    @post = @article.posts.build(params[:post]).decorate
     @post.user = current_user
     @post.article = @article
      
@@ -37,7 +37,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
-    @article = Article.find(params[:id])
+    @article = Article.find(params[:id]).decorate
   end
 
   # POST /articles
