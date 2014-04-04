@@ -7,6 +7,7 @@
       <span class="right controls">
         <%= link_to "Edit", edit_topic_path(@topic), html_options = {:class => "btn btn-mini"}  %>
         <%= link_to "Delete", @topic, html_options = {:class => "btn btn-mini btn-danger"}, :confirm => "Are you sure?", :method => :delete %>
+        <%= link_to "Reply", new_topic_post_path(@topic), html_options = {:class => "btn btn-mini"}  %>
         <%= link_to @topic.sticky_string, {:controller => 'topics', :action => 'update', :topic => {:sticky => @topic.sticky ? "false" : "true" }}, html_options = {:class => 'btn btn-mini', :method => :put }
             %>
         <% if current_user.has_role? :moderator %>

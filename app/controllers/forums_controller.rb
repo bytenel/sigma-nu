@@ -10,7 +10,7 @@ class ForumsController < ApplicationController
   end
   
   def new
-    @forum = Forum.new
+    @forum = Forum.new.decorate
   end
   
   def create

@@ -1,5 +1,5 @@
 class Article < ActiveRecord::Base
-  has_many :posts, :dependent => :destroy
+  has_many :posts, :as => :postable, :dependent => :destroy
   attr_accessible :author, :date, :description, :title
 
   attr_accessible :photo, :flag

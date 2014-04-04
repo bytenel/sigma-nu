@@ -27,7 +27,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   # GET /articles/new.json
   def new
-    @article = Article.new
+    @article = Article.new.decorate
 
     respond_to do |format|
       format.html # new.html.erb

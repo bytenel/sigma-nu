@@ -22,9 +22,9 @@ class ForumDecorator < Draper::Decorator
   end
 
   def formatted_errors
-  	  if model.errors.any?
-        flash.now[:error] = model.errors.full_messages.join(', and ')
-      end 
+  #	  if model.errors.any?
+  #      flash.now[:error] = model.errors.full_messages.join(', and ')
+  #    end 
   end
 
 end

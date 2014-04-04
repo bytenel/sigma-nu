@@ -1,7 +1,7 @@
 class Topic < ActiveRecord::Base
  resourcify 
   # Associations
-  has_many :posts, :dependent => :destroy
+  has_many :posts, :as => :postable, :dependent => :destroy
   belongs_to :forum, :counter_cache => true
   belongs_to :user, :class_name => "User", :counter_cache => true
   
@@ -29,7 +29,7 @@ class Topic < ActiveRecord::Base
   private
     def create_initial_post
       self.posts.build(:body => self.body).tap do |post|
-        post.forum = self.forum
+        post.postable = self
         post.user = self.user
         post.save
       end

@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
   
   def new
     @forum = Forum.find(params[:forum_id])
-    @topic = Topic.new
+    @topic = Topic.new.decorate
   end
   
   def create

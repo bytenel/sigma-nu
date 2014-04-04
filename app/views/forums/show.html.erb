@@ -24,11 +24,13 @@
                   <%= link_to topic.title, topic_path(topic) %><br />
                   <span class="smaller">by <%= topic.user.username %></span>
                 </td>
-                <td class="center-padded-table"><%= topic.posts.size - 1 %></td>
+                <td class="center-padded-table"><%= topic.posts.size %></td>
                 <td class="center-padded-table"><%= topic.hits %></td>
                 <td class="last_post smaller">
+                <% if topic.posts.length > 0 %>
                   <%= topic.posts.last.created_at %><br />
                   by <%= topic.posts.last.user.username %>
+                <% end %>
                 </td>
               </tr>
             </tbody>
