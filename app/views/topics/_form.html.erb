@@ -17,7 +17,7 @@
     </div>
     <% end %>
     <div class="module_footer">
-        <%= f.submit "submit", :class => "btn" %><%= link_to "cancel", (@topic.nil? ?  @topic : @forum), html_options = { :class => "btn"} %>
+        <%= f.submit "Submit", :class => "btn" %><%= link_to "Cancel", :back, html_options = { :class => "btn"} %>
     </div>
   </div>
 <% end %>

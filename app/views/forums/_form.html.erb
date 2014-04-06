@@ -23,7 +23,7 @@
     <footer>
       <div class="fieldset">
         <%= f.submit "submit", html_options = { :class => "btn"} %> 
-        <%= link_to "cancel", (@forum.nil? ? forum_path(@forum) : forums_path), html_options = { :class => "btn" } %>
+        <%= link_to "cancel", :back, html_options = { :class => "btn" } %>
       </div>
     </footer>
 
