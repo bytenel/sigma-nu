@@ -20,6 +20,10 @@ gem 'angularjs-rails'
 
 gem 'draper', '~> 1.3'
 
+gem 'activeadmin'
+gem "meta_search",    '>= 1.1.0.pre'
+gem 'jquery-ui-rails'
+
 #probably going to replace this with an angular module
 #and direct communication with google api and my database on second thought
 gem 'fullcalendar-rails'
