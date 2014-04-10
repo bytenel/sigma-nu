@@ -1,21 +1,21 @@
     <nav id="navbar" class="navbar navbar-inverse" role="navigation" class="navbar navbar-inverse">
       <div class="nav_container">
          <ul class="nav navbar-nav clearfix">
-          <li class="active margin-left-20"><%= link_to 'Home', root_path %></li>
-          <li><%= link_to 'About', about_path %></li>
-          <li><%= link_to 'Recruitment', recruitment_path %></li>
-          <li><%= link_to 'Members', bios_path %></li>
-          <li><%= link_to 'Alumni', alumni_path %></li>
+          <li class=<%= isActive?('home', 'index') + " margin-left-20" %> ><%= link_to 'Home', root_path %></li>
+          <li class=<%= isActive?('home', 'about') %> ><%= link_to 'About', about_path %></li>
+          <li class=<%= isActive?('home', 'recruitment') %> > <%= link_to 'Recruitment', recruitment_path %></li>
+          <li class=<%= isActive?('home', 'bios') %> ><%= link_to 'Members', bios_path %></li>
+          <li class=<%= isActive?('home', 'alumni') %> ><%= link_to 'Alumni', alumni_path %></li>
 
         <% if user_signed_in? %>
-            <li><%= link_to 'Dashboard', dashboard_path %></li>
-            <li>
+            <li class=<%= isActive?('user', 'dashboard') %> ><%= link_to 'Dashboard', dashboard_path %></li>
+            <li class=<%= isActive?('forum', 'any') %> >
               <%= link_to 'Forum', forums_path %>
             </li>
-            <li>
+            <li class=<%= isActive?('artcles', 'articles') %> >
               <%= link_to 'News', articles_path %>
             </li>
-            <li><%= link_to 'Calendar', calendar_path %> </li>
+            <li class=<%= isActive?('calendar', 'index') %> ><%= link_to 'Calendar', calendar_path %> </li>
           </ul>
            <ul id="userGravitar" class="nav navbar-nav clearfix pull-right">
              <%= link_to image_tag(Gravatar.new(current_user.email).image_url, :class => "avatar"), "http://en.gravatar.com/" %>
