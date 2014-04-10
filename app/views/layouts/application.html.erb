@@ -7,25 +7,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="row">
-  <%= render :partial => "shared/navbar" %>
-</div>
- <div class="container">
-    <div class="row">
-       <div class="col-md-9">
-         <% flash.each do |key, value| %>
-            <%= content_tag(:div, value, class: "alert alert-#{key}") %>
-         <% end %>
-     		 <%= yield :main_content %>
-       </div>
-       <div class="col-md-3">
-	  	   <%= yield :side_content %>
-       </div>
-  	</div>
-    <hr/>
-  	<footer>
-        <p>&copy; Sigma Nu Epsilon Lambda 2013</p>
-    </footer>
-</div>
+<%= render :partial => "shared/navbar" %>
+     <div class="container">
+        <div class="row">
+           <div class="col-md-9">
+             <% flash.each do |key, value| %>
+                <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+             <% end %>
+         		 <%= yield :main_content %>
+           </div>
+           <div class="col-md-3">
+    	  	   <%= yield :side_content %>
+           </div>
+      	</div>
+        <hr/>
+    </div>
+<%= render :partial => 'shared/footer' %>
 </body>
 </html>

@@ -12,10 +12,25 @@
  *= require_self
  */
   @import "bootstrap";  
+ 
+  html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+  }
 
-  footer{
-  	margin-top: 50px;
+  .footer{
   	text-align: center;
+    background-color: #2d2d2d;
+    color: #FFF; 
+    height: 200px;
+    margin-top: 10%;
+    bottom: 0;
+    padding: 10px;
+  }
+
+  .footer p{
+    margin-top: 10px;
   }
 
   #news{
@@ -33,4 +48,49 @@
     position: inherit;
     padding-top: 50px;
     padding-right: 300px;
+  }
+
+  .header{
+    background: url(<%= asset_path 'fullbadge.png' %>);
+    background-size: 20%;
+    background-position: top left;
+    background-repeat: no-repeat;
+  }
+
+  .navbar{
+    background-color: #2d2d2d;
+    height: 200px;
+    color: #FFF;
+    margin-bottom: 50px;
+  }
+
+  .nav_container{
+    padding-left: 360px;
+    padding-top: 148px;
+    padding-right: 5px;
+  }
+
+  .pull-right{
+    padding-right: 20px;
+  }
+
+  .small-width{
+    width: 50%;
+  }
+ 
+  .twitter-img{
+    height: 25%;
+  }
+
+  .facebook-img{
+    height: 20%;
+  }
+
+  .container{
+    height: 100%;
+  }
+
+  .img{
+    height: 100%;
+    width: 100%;
   }
