@@ -1,5 +1,6 @@
 class ArticleDecorator < Draper::Decorator
   delegate_all
+  decorates_association :posts 
 
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
@@ -32,20 +33,32 @@ class ArticleDecorator < Draper::Decorator
   	return (!flag).to_s
   end
 
-  def formatted_posts
-  	formatted_posts = ""
-   	 model.posts.each do |post| 
-	     if post.body.nil?
-	       next 
-	     end 
+#TODO: pretty sure i actually dont need that private helper
+  def formatted_posts(current_user)
+    return if model.posts.empty?
+      h.content_tag :span, { :class => 'right controls' }
+      self.posts.map do |post|
+        if post.body.nil?
+          next 
+        end
+         h.tag(:br) +
+         h.content_tag(:span, post.created_at.to_s + ' by ' + post.user.username) +
+         h.tag(:br) +
+         h.content_tag(:span, post.body) +
+         h.link_to("Reply", escape_string_url(Rails.application.routes.url_helpers.new_article_post_path(model)), html_options = {:class => "btn btn-mini"}) +
+         h.link_to("Quote", escape_string_url(Rails.application.routes.url_helpers.new_article_post_path(model, :quote => post)), html_options = {:class => "btn btn-mini"}) +
+         if current_user.posts.includes(post) 
+            h.link_to("Edit", escape_string_url(Rails.application.routes.url_helpers.edit_post_path(post)), html_options = {:class => "btn btn-mini"}) +
+            h.link_to("Delete", post,  html_options = {:class => "btn btn-mini btn-danger"}, :confirm => "Are you sure?", :method => :delete) 
+         end
+       end.join.html_safe
+      end
 
-	  formatted_posts += 
-	  "<br />
-	  #{ post.user.username }  :   #{ post.created_at } 
-	  <br/>
-	  #{ post.body }" 
-	 end 
 
-   return formatted_posts.html_safe
-  end
+      private
+
+      def escape_string_url(str)
+        str.gsub('/', '\\').gsub(/%5B/, '[').gsub(/%5D/, ']')
+      end
+
 end

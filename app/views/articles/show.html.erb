@@ -27,7 +27,9 @@
 
 <%= link_to @article.flag_string, {:controller => 'articles', :action => 'update', :article => {:flag => @article.inverted_flag }}, html_options = {:class => 'btn btn-mini', :method => :put } %>
 
-<%= @article.formatted_posts %>
+<br/>
+
+<%= @article.formatted_posts(current_user) %>
 
 <div class="module">
     <div class="module_body">
