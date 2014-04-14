@@ -24,11 +24,15 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def assign_moderator_role
-   self.add_role 'moderator'
+   self.add_role :moderator
+  end
+ 
+  def assign_admin_role
+   self.add_role :admin 
   end
 
   def assign_reader_role
-   self.add_role 'reader'
+   self.add_role :reader
   end
 
   def add_to_mail_chimp_members_list
