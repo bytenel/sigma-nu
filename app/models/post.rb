@@ -3,8 +3,9 @@ class Post < ActiveRecord::Base
   # Associations
   belongs_to :postable, :polymorphic => true
   belongs_to :user, :class_name => "User", :counter_cache => true
-  belongs_to :article
-   
+  belongs_to :parent, :class_name => "Post"
+  has_many :posts, :foreign_key => "parent_id"   
+
   # Accessors
   attr_accessible :body
   attr_accessible :flag

@@ -51,6 +51,10 @@ class PostsController < ApplicationController
      end
    end
 
+   def show
+    redirect_to(:back)
+   end
+
     private
 
     def find_postable

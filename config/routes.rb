@@ -17,7 +17,9 @@ SigmaNew::Application.routes.draw do
 
   devise_for :users
 
-  resources :posts
+  resources :post do
+    resources :posts, :shallow => true, :except => [:index]
+  end
 
   get "/dashboard", to: "user#dashboard", as: "dashboard"
 
