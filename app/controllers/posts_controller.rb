@@ -8,11 +8,11 @@ class PostsController < ApplicationController
      @postable = find_postable
      @post = @postable.posts.build(params[:post])
      @post.user = current_user
-
      if @post.save
        flash[:notice] = "Successfully created the post."
-       redirect_to @postable
+       redirect_to session[:return_to]
      else
+       flash[:notice] = "Failed creating the post."
        render :action => 'new'
      end
     end
@@ -20,6 +20,7 @@ class PostsController < ApplicationController
     def new
      @postable = find_postable
      @post = Post.new.decorate
+     session[:return_to] = request.env['HTTP_REFERER']
 
      if params[:quote]
        quote_post = Post.find(params[:quote])
