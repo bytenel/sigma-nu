@@ -5,13 +5,13 @@
     <div class="module_header">
       <h2> <%= @topic.title %> </h2>
       <span class="right controls">
-        <%= link_to "Edit", edit_topic_path(@topic), html_options = {:class => "btn btn-mini"}  %>
-        <%= link_to "Reply", new_topic_post_path(@topic), html_options = {:class => "btn btn-mini"}  %>
-        <%= link_to @topic.sticky_string, {:controller => 'topics', :action => 'update', :topic => {:sticky => @topic.sticky ? "false" : "true" }}, html_options = {:class => 'btn btn-mini', :method => :put }
+        <%= link_to "Edit", edit_topic_path(@topic) %>
+        <%= link_to "Reply", new_topic_post_path(@topic) %>
+        <%= link_to @topic.sticky_string, {:controller => 'topics', :action => 'update', :topic => {:sticky => @topic.sticky ? "false" : "true" }}, html_options = { :method => :put }
             %>
         <% if current_user.has_role? :moderator %>
         <%= link_to @topic.locked_string, {:controller => 'topics', :action => 'update', :topic => {:locked => !@topic.locked } },
-            html_options = {:class => 'btn btn-mini', :method => :put}
+            html_options = {:method => :put}
             %>
         <%= button_to "Delete", @topic, html_options = {:class => "btn btn-mini btn-danger",:confirm => "Are you sure?", :method => :delete} %>
         <% end %>
@@ -26,11 +26,11 @@
               <span class="avatar"><!-- This space reserved for Avatar --></span>
               <span class="left post_date smaller"><%= post.created_at %></span>
               <span class="right controls">
-                <%= link_to post.flagged_string, {:controller => 'posts', :action => 'update', :post => {:flag => !post.flag }}, html_options = {:class => 'btn btn-mini', :method => :put } %>
-                <%= link_to "Reply", new_post_post_path(post), html_options = {:class => "btn btn-mini"}  %>
-                <%= link_to "Quote", new_topic_post_path(@topic, :quote => post), html_options = {:class => "btn btn-mini"} %>
+                <%= link_to post.flagged_string, {:controller => 'posts', :action => 'update', :post => {:flag => !post.flag }}, html_options = {:method => :put } %>
+                <%= link_to "Reply", new_post_post_path(post) %>
+                <%= link_to "Quote", new_topic_post_path(@topic, :quote => post) %>
                 <% if current_user.posts.includes(post) %>
-                   <%= link_to "Edit", edit_post_path(post), html_options = {:class => "btn btn-mini"} %>
+                   <%= link_to "Edit", edit_post_path(post)%>
                  <%= button_to "Delete", post,  html_options = {:class => "btn btn-mini btn-danger",:confirm => "Are you sure?",:method => :delete} %>
                 <% end %>
               </span>
@@ -50,12 +50,12 @@
                         <span class="avatar"><!-- This space reserved for Avatar --></span>
                         <span class="left post_date smaller"><%= post.created_at %></span>
                         <span class="right controls">
-                          <%= link_to post.flagged_string, {:controller => 'posts', :action => 'update', :post => {:flag => !post.flag }}, html_options = {:class => 'btn btn-mini', :method => :put } %>
-                          <%= link_to "Reply", new_post_post_path(post), html_options = {:class => "btn btn-mini"}  %>
-                          <%= link_to "Quote", new_topic_post_path(@topic, :quote => post), html_options = {:class => "btn btn-mini"} %>
+                          <%= link_to post.flagged_string, {:controller => 'posts', :action => 'update', :post => {:flag => !post.flag }}, html_options = {:method => :put } %>
+                          <%= link_to "Reply", new_post_post_path(post) %>
+                          <%= link_to "Quote", new_topic_post_path(@topic, :quote => post) %>
                           <% if current_user.posts.includes(post) %>
-                           <%= link_to "Edit", edit_post_path(post), html_options = {:class => "btn btn-mini"} %>
-                           <%= link_to "Delete", post,  html_options = {:class => "btn btn-mini btn-danger"}, :confirm => "Are you sure?", :method => :delete %>
+                           <%= link_to "Edit", edit_post_path(post)%>
+                           <%= button_to "Delete", post,  html_options = {:class => "btn btn-mini btn-danger", :confirm => "Are you sure?", :method => :delete} %>
                           <% end %>
                         </span>
                       </th>
