@@ -12,10 +12,15 @@
 }
 
 .forum a:hover{
-	color:#CC9900;
+	color: #000000 !important;
 	background: none;
 }
 
 .forum a:visited{
-	color:#CC9900;
+	color: #428bca;
+	text-decoration: none;
 }
+
+.btn{
+	color: #ffffff !important;
+};
