@@ -46,8 +46,10 @@ class PostsController < ApplicationController
 
      if @post.destroy
       flash[:notice] = "Post was successfully destroyed."
+      redirect_to(:back)
      else
       flash[:error] = "The post could not be deleted."
+      redirect_to(:back)
      end
    end
 
