@@ -16,8 +16,7 @@
 </p>
 
 <p>
-  <b>Img-url:</b>
-  <%= @article.photo.url %>
+  <%= image_tag article.photo.url, html_options = { :class=>'article-avatar'} %>
 </p>
 
 <p>

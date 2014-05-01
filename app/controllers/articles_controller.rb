@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  layout 'no_col_def'
+  
   # GET /articles
   # GET /articles.json
   def index
@@ -18,7 +20,7 @@ class ArticlesController < ApplicationController
     #post needed for the form on the view
     @post =  Post.new
     @post.user = current_user
-    @post.article = @article
+    @post.postable = @article
      
     respond_to do |format|
       format.html # show.html.erb
