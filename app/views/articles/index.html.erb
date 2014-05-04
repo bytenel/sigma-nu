@@ -1,6 +1,10 @@
 <%= content_for :main_content do %>
     <div class="col-md-12">
         <div class="row">
+        <% if current_user.has_role? :moderator %>
+           <h3><%= button_to 'New Article', new_article_path,html_options = {:method => 'get',:class => "btn btn-mini btn-primary"} %></h3>
+        <% end %>
+            <br/>
         <% @articles.each do |article| %>
                 <div class="col-md-4">
                   <div class="article">
@@ -12,7 +16,7 @@
                     <br />
                     
                     <span class='article-info'>
-                        <%= article.author %>
+                        <%= article.user.username %>
                         <br/>
                         <%= article.date %>
                         <br/>
@@ -21,20 +25,13 @@
                         <br/> 
                     </span> 
                     <% if current_user.has_role? :moderator %>
-                            <%= link_to 'Edit', edit_article_path(article) %>
+                            <%= button_to 'Edit', edit_article_path(article),
+                                html_options = {:method => 'get',:class => "btn btn-mini btn-primary"}  %>
                             <%= button_to "Delete", article,  html_options = {:class => "btn btn-mini btn-danger",:confirm => "Are you sure?",:method => :delete} %>
                     <% end %>
                     </div>
                   </div>
         <% end %>
-
-        <br />
-
-            <% if current_user.has_role? :moderator %>
-              <span class="bottom-area">
-                <%= link_to 'New Article', new_article_path %>
-              </span>
-            <% end %>
        </div>
     </div>
 <% end %>

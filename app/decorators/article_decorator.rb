@@ -13,13 +13,13 @@ class ArticleDecorator < Draper::Decorator
   def formatted_errors
   	error_message = ""
 	if model.errors.any?
-     error_message += '<div id="error_explanation">
-      <h2> #{ pluralize(@article.errors.count, "error") } prohibited this article from being saved:</h2>
-      <ul>'
+     error_message += "<div id='error_explanation'>
+      <h2> #{ h.pluralize(model.errors.count, "error") } prohibited this article from being saved:</h2>
+      <ul>"
        model.errors.full_messages.each do |msg| 
-       error_message += '<li> #{ msg } </li>'
+       error_message += "<li> #{ msg } </li>"
        end 
-     error_message += '</ul></div>'
+     error_message += "</ul></div>"
   	end
 
   	return error_message.html_safe

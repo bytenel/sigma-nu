@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140502030841) do
+ActiveRecord::Schema.define(:version => 20140504030707) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(:version => 20140502030841) do
   create_table "articles", :force => true do |t|
     t.string   "title"
     t.datetime "date"
-    t.string   "author"
-    t.text     "description"
+    t.integer  "user_id"
+    t.text     "body"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "photo_file_name"
@@ -151,6 +151,7 @@ ActiveRecord::Schema.define(:version => 20140502030841) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "articles_count"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
