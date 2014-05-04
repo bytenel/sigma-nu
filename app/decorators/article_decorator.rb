@@ -41,15 +41,16 @@ class ArticleDecorator < Draper::Decorator
         if post.body.nil?
           next 
         end
-         h.tag(:br) +
-         h.content_tag(:span, post.created_at.to_s + ' by ' + post.user.username) +
+         h.tag(:hr)+
+         h.content_tag(:h3, post.user.username) +
+         h.content_tag(:h4, post.created_at.to_s) +
          h.tag(:br) +
          h.content_tag(:span, post.body) +
-         h.link_to("Reply", escape_string_url(Rails.application.routes.url_helpers.new_article_post_path(model)), html_options = {:class => "btn btn-mini"}) +
-         h.link_to("Quote", escape_string_url(Rails.application.routes.url_helpers.new_article_post_path(model, :quote => post)), html_options = {:class => "btn btn-mini"}) +
+         h.button_to("Reply", escape_string_url(Rails.application.routes.url_helpers.new_article_post_path(model)), html_options = {:method=>'get', :class => "btn btn-mini btn-primary pull-right"}) +
+         h.button_to("Quote", escape_string_url(Rails.application.routes.url_helpers.new_article_post_path(model, :quote => post)), html_options = {:method=>'get', :class => "btn btn-mini btn-primary pull-right"}) +
          if current_user.posts.includes(post) 
-            h.link_to("Edit", escape_string_url(Rails.application.routes.url_helpers.edit_post_path(post)), html_options = {:class => "btn btn-mini"}) +
-            h.link_to("Delete", post,  html_options = {:class => "btn btn-mini btn-danger"}, :confirm => "Are you sure?", :method => :delete) 
+            h.button_to("Edit", escape_string_url(Rails.application.routes.url_helpers.edit_post_path(post)), html_options = {:class => "btn btn-mini btn-primary pull-right", :method => 'get'}) +
+            h.button_to("Delete", post,  html_options = {:class => "btn btn-mini btn-danger pull-right", :confirm => "Are you sure?"} ) 
          end
        end.join.html_safe
       end

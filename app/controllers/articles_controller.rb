@@ -16,7 +16,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
     @article = Article.find(params[:id]).decorate
-
+    session[:return_to] = request.original_url
+    
     #post needed for the form on the view
     @post =  Post.new
     @post.user = current_user

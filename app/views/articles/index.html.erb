@@ -9,19 +9,16 @@
                 <div class="col-md-4">
                   <div class="article">
                     <div class="article-header">
-                        <h3><%= link_to article.title, article %></h3>
-                        <hr/>
+                        <h2><%= link_to article.title, article %></h2>
                     </div>
 
-                    <br />
-                    
                     <span class='article-info'>
-                        <%= article.user.username %>
-                        <br/>
+                        <h4><%= article.user.username %></h4>
+                        <hr/>
                         <%= article.date %>
                         <br/>
                         <br/>
-                        <%= article.description %>
+                        <i> <%= article.description %></i>
                         <br/> 
                     </span> 
                     <% if current_user.has_role? :moderator %>
