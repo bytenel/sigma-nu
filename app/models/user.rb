@@ -1,9 +1,12 @@
 class User < ActiveRecord::Base
   rolify
-  after_create :assign_reader_role, :add_to_mail_chimp_members_list
+  before_create :assign_reader_role, :add_to_mail_chimp_members_list
   has_many :topics, :dependent => :destroy
   has_many :posts, :dependent => :destroy
 
+  accepts_nested_attributes_for :topics, :allow_destroy => true
+  accepts_nested_attributes_for :posts, :allow_destroy => true
+  
   # TODO: add these
   # :confirmable, :omniauthable
   devise :database_authenticatable, :registerable,
@@ -23,6 +26,8 @@ class User < ActiveRecord::Base
                     :s3_credentials => YAML.load(ERB.new(File.read("#{::Rails.root}/config/s3.yml")).result)
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
+  has_and_belongs_to_many :roles, :join_table => :users_roles
+ 
   def assign_moderator_role
    self.add_role :moderator
   end

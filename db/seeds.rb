@@ -7,5 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.create(email: "admin@admin.com", password: "password", password_confirmation: "password", username: "admin").assign_admin_role
-Article.create(title: "New Website", description: "Sigma Nu Epsilon Lambda got a new website!", date: Date.current)
+Article.create(title: "New Website", body: "Sigma Nu Epsilon Lambda got a new website!", date: Date.current)
 Forum.create(title: "Sigma Nu", description: "Banter about the house.", category_id: 1)
+AdminUser.create(email: "admin@example.com", password: "password")
