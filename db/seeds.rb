@@ -6,7 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(email: "admin@admin.com", password: "password", password_confirmation: "password", username: "admin").assign_admin_role
-Article.create(title: "New Website", body: "Sigma Nu Epsilon Lambda got a new website!", date: Date.current)
+user = User.create(email: "admin@admin.com", password: "password", password_confirmation: "password", username: "admin")
+user.assign_admin_role
+article = Article.create(title: "New Website", body: "Sigma Nu Epsilon Lambda got a new website!", date: Date.current)
+article.user_id = user.id
+article.save
 Forum.create(title: "Sigma Nu", description: "Banter about the house.", category_id: 1)
 AdminUser.create(email: "admin@example.com", password: "password")

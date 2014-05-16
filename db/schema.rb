@@ -58,8 +58,6 @@ ActiveRecord::Schema.define(:version => 20140504030707) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.boolean  "flag"
-    t.integer  "postable_id"
-    t.string   "postable_type"
   end
 
   create_table "categories", :force => true do |t|
@@ -84,22 +82,23 @@ ActiveRecord::Schema.define(:version => 20140504030707) do
   create_table "forums", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.boolean  "state",         :default => true
-    t.integer  "topics_count",  :default => 0
-    t.integer  "posts_count",   :default => 0
-    t.integer  "position",      :default => 0
+    t.boolean  "state",        :default => true
+    t.integer  "topics_count", :default => 0
+    t.integer  "posts_count",  :default => 0
+    t.integer  "position",     :default => 0
     t.integer  "category_id"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
-    t.integer  "postable_id"
-    t.string   "postable_type"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "posts", :force => true do |t|
     t.text     "body"
+    t.integer  "forum_id"
+    t.integer  "topic_id"
     t.integer  "user_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "article_id"
     t.boolean  "flag"
     t.integer  "postable_id"
     t.string   "postable_type"
@@ -119,16 +118,14 @@ ActiveRecord::Schema.define(:version => 20140504030707) do
 
   create_table "topics", :force => true do |t|
     t.string   "title"
-    t.integer  "hits",          :default => 0
-    t.boolean  "sticky",        :default => false
-    t.boolean  "locked",        :default => false
+    t.integer  "hits",        :default => 0
+    t.boolean  "sticky",      :default => false
+    t.boolean  "locked",      :default => false
     t.integer  "posts_count"
     t.integer  "forum_id"
     t.integer  "user_id"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-    t.integer  "postable_id"
-    t.string   "postable_type"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "users", :force => true do |t|
