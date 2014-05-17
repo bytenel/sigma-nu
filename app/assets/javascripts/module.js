@@ -1,4 +1,4 @@
-'use strict';
+/*'use strict';
 
 angular.module('sigmaNuApp', [
   'ngCookies',
@@ -15,3 +15,4 @@ angular.module('sigmaNuApp', [
         controller: 'MainCtrl'
       });
   });
+*/

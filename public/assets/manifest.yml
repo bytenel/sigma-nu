@@ -7,10 +7,12 @@ composite_11_12.jpeg: composite_11_12-bb9b080be0e2e78ef897b3b30f5f78ff.jpeg
 composite_11_12/index.jpeg: composite_11_12-bb9b080be0e2e78ef897b3b30f5f78ff.jpeg
 facebook.jpeg: facebook-5cd32837cdde4c5f054fa62eb0994e0e.jpeg
 facebook/index.jpeg: facebook-5cd32837cdde4c5f054fa62eb0994e0e.jpeg
+favicon.ico: favicon-f78e160d01692f5f55d6385184fbfb29.ico
+favicon/index.ico: favicon-f78e160d01692f5f55d6385184fbfb29.ico
 fullbadge.png: fullbadge-9969e66639f8618ad1aa1efe897a5c64.png
 fullbadge/index.png: fullbadge-9969e66639f8618ad1aa1efe897a5c64.png
-original/missing.png: original/missing-e026c6d4771210852e27520c9a72566d.png
-original/missing/index.png: original/missing-e026c6d4771210852e27520c9a72566d.png
+missing.png: missing-e026c6d4771210852e27520c9a72566d.png
+missing/index.png: missing-e026c6d4771210852e27520c9a72566d.png
 rails.png: rails-a3386665c05a2d82f711a4aaa72d247c.png
 rails/index.png: rails-a3386665c05a2d82f711a4aaa72d247c.png
 sigmanucoatofarms.png: sigmanucoatofarms-e026c6d4771210852e27520c9a72566d.png
@@ -25,8 +27,8 @@ twitter.jpeg: twitter-9acd549bf52bcc91b70d8a56368a3ca0.jpeg
 twitter/index.jpeg: twitter-9acd549bf52bcc91b70d8a56368a3ca0.jpeg
 application.js: application-27d6a43e7dd94b15035a40b1aaae888b.js
 application/index.js: application-27d6a43e7dd94b15035a40b1aaae888b.js
-application.css: application-e2f48d5b22cc5265e3bb102b1b2c6931.css
-application/index.css: application-e2f48d5b22cc5265e3bb102b1b2c6931.css
+application.css: application-d6080521f25862c6c8c4ecb8941a94b1.css
+application/index.css: application-d6080521f25862c6c8c4ecb8941a94b1.css
 jquery-ui/animated-overlay.gif: jquery-ui/animated-overlay-602eee4c79a4796b02bb6442948c9e28.gif
 jquery-ui/animated-overlay/index.gif: jquery-ui/animated-overlay-602eee4c79a4796b02bb6442948c9e28.gif
 jquery-ui/ui-bg_flat_0_aaaaaa_40x100.png: jquery-ui/ui-bg_flat_0_aaaaaa_40x100-7d1197a52442bc56fcad60d0390f4b32.png

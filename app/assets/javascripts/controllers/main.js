@@ -1,5 +1,5 @@
 'use strict';
-
+/*
 angular.module('sigmaNuApp')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
@@ -8,3 +8,4 @@ angular.module('sigmaNuApp')
       'Karma'
     ];
   });
+*/
