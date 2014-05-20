@@ -13,6 +13,37 @@
     <div><%= f.label :email %><br />
     <%= f.email_field :email, :autofocus => true %></div>
 
+      <div><%= f.label :name %><br />
+    <%= f.text_field :name %></div>
+
+    <div><%= f.label :address %><br />
+    <%= f.text_field :address %></div>
+
+    <div><%= f.label :city %><br />
+    <%= f.text_field :city %></div>
+
+    <div><%= f.label :state %><br />
+    <%= f.text_field :state %></div>
+
+    <div><%= f.label :phone %><br />
+    <%= f.text_field :phone %></div>
+
+    <div><%= f.label :phone_carrier %><br />
+    <%= f.text_field :phone_carrier %></div>
+
+    <div><%= f.label :emergency_contact_name %><br />
+    <%= f.text_field :emergency_contact_name %></div>
+
+    <div><%= f.label :emergency_contact_phone %><br />
+    <%= f.text_field :emergency_contact_phone %></div>
+
+    <div><%= f.label :student_id %><br />
+    <%= f.text_field :student_id %></div>
+
+    <div><%= f.label :major %><br />
+    <%= f.text_field :major %></div>
+
+
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>

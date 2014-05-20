@@ -12,7 +12,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :username
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username,
+                  :name, :address, :city, :state, :phone, :phone_carrier, :emergency_contact_name, :emergency_contact_phone,
+                  :student_id, :major
   
   validates :email, :presence => true
   validates :password, :presence => true
