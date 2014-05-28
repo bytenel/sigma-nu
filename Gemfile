@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
+
 ruby '1.9.3'
 
 gem 'rails', '3.2.13'
@@ -16,7 +18,10 @@ gem 'rolify'
 
 gem 'gravatar-ultimate'
 
-gem 'angularjs-rails'
+# bower libraries via Rails Assets
+gem 'rails-assets-angular'
+gem 'rails-assets-angular-ui-calendar'
+gem 'rails-assets-fullcalendar'
 
 gem 'draper', '~> 1.3'
 

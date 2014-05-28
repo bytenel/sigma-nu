@@ -1,12 +1,3 @@
 <%= content_for :main_content do %>
-<div id='calendar'></div>
-
-<script>
-$(document).ready(function() {$('#calendar').fullCalendar({
-        // put your options and callbacks here
-    });
-    }
-     );
-</script>
-
+  <div ui-calendar ng-model="eventSources"></div>
 <% end %>
