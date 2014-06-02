@@ -20,3 +20,38 @@
 <br />
 	</div>
 <% end %>
+
+<% content_for :side_content do %>
+	<script src="https://checkout.stripe.com/checkout.js"></script>
+
+	<div class="form-row">
+	  	<label>
+			<span>Amount - $</span>
+		  	<input type="text" size="10" id="pay-ammount"/>
+	 	</label>
+	</div>
+	<button id="customButton" class="btn btn-primary">Donate</button>
+
+
+
+	<script>
+	  var handler = StripeCheckout.configure({
+	    key: '<%= ENV["STRIPE_PUBLISH_KEY"] %>',
+	    image: '<%= asset_path "fullbadge.png" %>',
+	    token: function(token, args) {
+	      // Use the token to create the charge with a server-side script.
+	      // You can access the token ID with `token.id`
+	    }
+	  });
+
+	  document.getElementById('customButton').addEventListener('click', function(e) {
+	    // Open Checkout with further options
+	    handler.open({
+	      name: 'Sigma Nu - Epsilon Lambda',
+	      description: 'Donation',
+	      amount: $("#pay-ammount").val() * 100
+	    });
+	    e.preventDefault();
+	  });
+	</script>
+<% end %>

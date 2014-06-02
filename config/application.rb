@@ -11,6 +11,10 @@ end
 
 module SigmaNew
   class Application < Rails::Application
+
+    if  ENV['STRIPE_PUBLISH_KEY'].nil?
+     ENV['STRIPE_PUBLISH_KEY']= YAML.load(ERB.new(File.read("#{::Rails.root}/config/secret/s3.yml")).result)[::Rails.env]['STRIPE_PUBLISH_KEY']
+    end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

@@ -1,0 +1,4 @@
+development:
+  secret_publish_key: <%= ENV['STRIPE_PUBLISH_KEY'] %>
+production:
+  secret_publish_key: <%= ENV['STRIPE_PUBLISH_KEY'] %>
