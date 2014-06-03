@@ -19,8 +19,7 @@
             <% @forum.topics.each do |topic| %>
             <tbody>
               <tr>
-                <td class="center-padded-table"><i class="img-circle icon-tasks"></i></td>
-                <td class="description">
+                <td colspan="2" class="description">
                   <%= link_to topic.title, topic_path(topic) %><br />
                   <span class="smaller">by <%= topic.user.username %></span>
                 </td>

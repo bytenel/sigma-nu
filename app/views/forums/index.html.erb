@@ -22,8 +22,7 @@
           <% @forums.each do |forum| %>
         </tbody>
         <tr>
-          <td class="center-padded-table"><i class="img-circle icon-th-list"></i></td>
-          <td class="description">
+          <td colspan="2" class="description">
             <%= link_to forum.title, forum_path(forum) %><br />
             <span class="smaller"><%= forum.description %></span><br />
           </td>
