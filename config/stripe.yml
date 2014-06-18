@@ -1,3 +1,8 @@
+<%
+if  ENV['STRIPE_PUBLISH_KEY'].nil? 
+ ENV['STRIPE_PUBLISH_KEY'] = YAML.load(ERB.new(File.read("#{::Rails.root}/config/secret/stripe.yml")).result)[::Rails.env]['STRIPE_PUBLISH_KEY']
+end
+%>
 development:
   secret_publish_key: <%= ENV['STRIPE_PUBLISH_KEY'] %>
 production:
