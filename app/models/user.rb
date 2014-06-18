@@ -73,12 +73,7 @@ class User < ActiveRecord::Base
 
     # Create the user if needed
     if user.nil?
-
-      # Get the existing user by email if the provider gives us a verified email.
-      # If no verified email was provided we assign a temporary email and ask the
-      # user to verify it on the next step via UsersController.finish_signup
-      email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
-      email = auth.info.email if email_is_verified
+      email = auth.info.email
       user = User.where(:email => email).first if email
 
       # Create the user if it's a new registration
@@ -86,12 +81,12 @@ class User < ActiveRecord::Base
         password = Devise.friendly_token[0,20]
         user = User.new(
           name: auth.extra.raw_info.name,
-          #username: auth.info.nickname || auth.uid,
-          email: email ? email : "#{auth.uid}-#{auth.provider}.com",
+          username: auth.info.nickname || auth.uid,
+          email: email ? email : "#{auth.uid}@#{auth.provider}.com",
           password: password,
           password_confirmation: password
         )
-        
+
         user.save!
       end
     end
@@ -99,6 +94,9 @@ class User < ActiveRecord::Base
     # Associate the identity with the user if needed
     if identity.user != user
       identity.user = user
+      identity.provider = auth.provider
+      identity.email = email ? email : "#{auth.uid}@#{auth.provider}.com"
+      identity.password = password
       identity.save!
     end
     user
