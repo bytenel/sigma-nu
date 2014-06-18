@@ -272,5 +272,6 @@ DEPENDENCIES
   rails-assets-fullcalendar
   rails_autolink
   rolify
+  sass
   sass-rails (>= 3.2)
   uglifier (>= 1.0.3)
