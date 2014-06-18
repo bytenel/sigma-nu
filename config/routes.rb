@@ -15,11 +15,14 @@ SigmaNew::Application.routes.draw do
     root :to => 'forums#index', :via => :get
   end
 
-  devise_for :users
+  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
 
   resources :post do
     resources :posts, :shallow => true, :except => [:index]
   end
+
+  # omniauth
+  get '/auth/:provider/callback', to: 'sessions#create'
 
   get "/dashboard", to: "user#dashboard", as: "dashboard"
 

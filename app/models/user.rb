@@ -3,14 +3,15 @@ class User < ActiveRecord::Base
   before_create :assign_reader_role, :add_to_mail_chimp_members_list
   has_many :topics, :dependent => :destroy
   has_many :posts, :dependent => :destroy
+  has_many :identities
 
   accepts_nested_attributes_for :topics, :allow_destroy => true
   accepts_nested_attributes_for :posts, :allow_destroy => true
   
-  # TODO: add these
-  # :confirmable, :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+
+         # TODO: add :confirmable
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username,
                   :name, :address, :city, :state, :phone, :phone_carrier, :emergency_contact_name, :emergency_contact_phone,
@@ -19,7 +20,6 @@ class User < ActiveRecord::Base
   validates :email, :presence => true
   validates :password, :presence => true
   validates :password_confirmation, :presence => true
-  validates :username, :presence => true
 
   attr_accessible :avatar
   #TODO: move YAML load statement into a helper somewhere
@@ -58,6 +58,50 @@ class User < ActiveRecord::Base
       :email => {:email => self.email },
       :delete_member => true, 
       :send_notify => true)
+  end
+
+   def self.find_for_oauth(auth, signed_in_resource = nil)
+    # Get the identity and user if they exist
+    identity = Identity.find_for_oauth(auth)
+    identity = identity ? identity : Identity.new
+
+    # If a signed_in_resource is provided it always overrides the existing user
+    # to prevent the identity being locked with accidentally created accounts.
+    # Note that this may leave zombie accounts (with no associated identity) which
+    # can be cleaned up at a later date.
+    user = signed_in_resource ? signed_in_resource : identity.user
+
+    # Create the user if needed
+    if user.nil?
+
+      # Get the existing user by email if the provider gives us a verified email.
+      # If no verified email was provided we assign a temporary email and ask the
+      # user to verify it on the next step via UsersController.finish_signup
+      email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
+      email = auth.info.email if email_is_verified
+      user = User.where(:email => email).first if email
+
+      # Create the user if it's a new registration
+      if user.nil?
+        password = Devise.friendly_token[0,20]
+        user = User.new(
+          name: auth.extra.raw_info.name,
+          #username: auth.info.nickname || auth.uid,
+          email: email ? email : "#{auth.uid}-#{auth.provider}.com",
+          password: password,
+          password_confirmation: password
+        )
+        
+        user.save!
+      end
+    end
+
+    # Associate the identity with the user if needed
+    if identity.user != user
+      identity.user = user
+      identity.save!
+    end
+    user
   end
 
 end
