@@ -3,7 +3,7 @@ class Identity < ActiveRecord::Base
 
   def self.find_for_oauth(auth)
     where(provider: auth['provider']).
-    where(user_id: auth['uid']).
+    where(uid: auth['uid']).
     first
   end
 

@@ -64,7 +64,6 @@ class User < ActiveRecord::Base
     # Get the identity and user if they exist
     identity = Identity.find_for_oauth(auth)
     identity = identity ? identity : Identity.new
-
     # If a signed_in_resource is provided it always overrides the existing user
     # to prevent the identity being locked with accidentally created accounts.
     # Note that this may leave zombie accounts (with no associated identity) which
@@ -97,6 +96,7 @@ class User < ActiveRecord::Base
       identity.provider = auth.provider
       identity.email = email ? email : "#{auth.uid}@#{auth.provider}.com"
       identity.password = password
+      identity.uid = auth.uid
       identity.save!
     end
     user
