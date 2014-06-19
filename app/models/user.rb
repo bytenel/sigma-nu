@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   rolify
   before_create :assign_reader_role, :add_to_mail_chimp_members_list
+  before_destroy :remove_from_mail_chimp_members_list
   has_many :topics, :dependent => :destroy
   has_many :posts, :dependent => :destroy
-  has_many :identities
+  has_many :identities, :dependent => :destroy
 
   accepts_nested_attributes_for :topics, :allow_destroy => true
   accepts_nested_attributes_for :posts, :allow_destroy => true
@@ -64,10 +65,6 @@ class User < ActiveRecord::Base
     # Get the identity and user if they exist
     identity = Identity.find_for_oauth(auth)
     identity = identity ? identity : Identity.new
-    # If a signed_in_resource is provided it always overrides the existing user
-    # to prevent the identity being locked with accidentally created accounts.
-    # Note that this may leave zombie accounts (with no associated identity) which
-    # can be cleaned up at a later date.
     user = signed_in_resource ? signed_in_resource : identity.user
 
     # Create the user if needed
