@@ -8,7 +8,9 @@
           <li class=<%= isActive?('home', 'alumni') %> ><%= link_to 'Alumni', alumni_path %></li>
 
         <% if user_signed_in? %>
+          <% if ENV['FEATURE_DASHBOARD'] %>
             <li class=<%= isActive?('user', 'dashboard') %> ><%= link_to 'Dashboard', dashboard_path %></li>
+          <% end %>
             <li class=<%= isActive?('forum', 'any') %> >
               <%= link_to 'Forum', forums_path %>
             </li>
